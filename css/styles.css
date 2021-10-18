@@ -1,0 +1,154 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* border: red 2px solid; */
+}
+
+:root {
+  --main_black: black;
+  --player_1: #d62828;
+  --player_2: #fcbf49;
+
+  --background: #eae2b7;
+  --game_orange: #f77f00;
+  --board_color: #003049;
+}
+
+body {
+  align-items: center;
+  background: #eae2b7;
+  display: flex;
+  flex-direction: column;
+  font-family: sans-serif;
+  padding: 25px;
+  width: 100%;
+}
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+  height: 700px;
+  margin: 10px 0 25px;
+  width: 700px;
+}
+
+.cell {
+  align-items: center;
+  background: var(--board_color);
+  display: flex;
+  height: 100px;
+  justify-content: center;
+  width: 100px;
+}
+
+.cell::after {
+  background: var(--background);
+  border-radius: 50%;
+  border: 1px solid var(--main_black);
+  content: "";
+  cursor: pointer;
+  height: 75px;
+  width: 75px;
+}
+
+.cell:not(.row-top).red::after {
+  background: var(--player_1);
+}
+.cell:not(.row-top).yellow::after {
+  background: var(--player_2);
+}
+
+.cell:not(.row-top).red.win {
+  background: var(--player_1);
+}
+
+.cell:not(.row-top).yellow.win {
+  background: var(--player_2);
+}
+
+.cell.row-top {
+  background: var(--background);
+}
+
+.cell.row-top::after {
+  border: none;
+}
+
+.cell.row-top.red::after {
+  background: var(--player_1);
+  border: 1px solid var(--main_black);
+}
+
+.cell.row-top.yellow::after {
+  background: var(--player_2);
+  border: 1px solid var(--main_black);
+}
+
+.footer {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 700px;
+}
+
+.reset {
+  background-color: #003049;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 15px 30px;
+  text-transform: uppercase;
+}
+
+.reset:hover {
+  background-color: #f77f00;
+}
+
+.reset:active {
+  background-color: #fcbf49;
+  color: black;
+}
+
+.status {
+  display: block;
+  font-size: 20px;
+}
+
+/* Util CSS */
+.left-border {
+  border-left: 1px solid var(--main_black);
+}
+
+.top-border {
+  border-top: 1px solid var(--main_black);
+}
+
+.right-border {
+  border-right: 1px solid var(--main_black);
+}
+
+.bottom-border {
+  border-bottom: 1px solid var(--main_black);
+}
+
+.left-border.top-border {
+  border-radius: 10px 0 0 0;
+}
+
+.right-border.top-border {
+  border-radius: 0 10px 0 0;
+}
+
+.right-border.bottom-border {
+  border-radius: 0 0 10px 0;
+}
+
+.left-border.bottom-border {
+  border-radius: 0 0 0 10px;
+}

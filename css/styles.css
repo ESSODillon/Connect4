@@ -5,6 +5,22 @@
   /* border: red 2px solid; */
 }
 
+@font-face {
+  font-family: TitleFont;
+  src: url(/css/PatrickHand-Regular.ttf);
+}
+
+.title {
+  font-family: TitleFont;
+  font-size: 50px;
+  text-transform: uppercase;
+}
+
+.rules {
+  font-size: larger;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
 :root {
   --main_black: black;
   --player_1: #d62828;
@@ -25,6 +41,10 @@ body {
   width: 100%;
 }
 
+#wrapper {
+  display: none;
+}
+
 .game-board {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -41,6 +61,7 @@ body {
   height: 100px;
   justify-content: center;
   width: 100px;
+  fill: #eae2b7;
 }
 
 .cell::after {
@@ -93,7 +114,8 @@ body {
   width: 700px;
 }
 
-.reset {
+.reset,
+.start {
   background-color: #003049;
   border-radius: 5px;
   border: none;

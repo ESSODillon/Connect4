@@ -46,8 +46,13 @@ class Settings {
 
   getColorOfCell(cell) {
     const classList = this.getClassListArray(cell);
-    if (classList.includes("yellow")) return "yellow";
-    if (classList.includes("red")) return "red";
+    if (classList.includes("yellow")) {
+      return "yellow";
+    }
+    if (classList.includes("red")) {
+      return "red";
+    }
+
     return null;
   }
 }

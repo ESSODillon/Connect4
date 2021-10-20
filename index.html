@@ -8,8 +8,28 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    
+    <div id="menu">
+        <h1 class="title">Connect 4</h1>
+        <br>
+        <ul class="rules">
+            <li>First, decide who goes first and what color each player will have. </li>
+            <li>Players must alternate turns, and only one disc can be dropped in each turn. </li>
+            <li>On your turn, drop one of your colored discs from the top into any of the seven slots. </li>
+            <li>The game ends when there is a 4-in-a-row or a stalemate.</li>
+            <li>The starter of the previous game goes second on the next game.</li>
+        </ul>
+        <br>
+        
+        <button class="start" onclick="startGame()">Start Game</button>
+    </div>
 
-    <div class="game-board">
+    <div id="wrapper">
+
+        <div class="game-board">
+
+        
+
         <div class="cell row-top col-0"></div>
         <div class="cell row-top col-1"></div>
         <div class="cell row-top col-2"></div>
@@ -65,13 +85,19 @@
         <div class="cell row-5 col-4 bottom-border"></div>
         <div class="cell row-5 col-5 bottom-border"></div>
         <div class="cell row-5 col-6 bottom-border right-border"></div>
-    </div>
+        </div> 
+        
+        <div class="footer">
+            <button class="reset">Reset</button>
+            <span class="status"></span>
+        </div>
 
-    <div class="footer">
-        <button class="reset">Reset</button>
-        <span class="status"></span>
     </div>
     
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
     <script src="js/board.js"></script>
     <script src="js/settings.js"></script>
     <script src="js/winning.js"></script>

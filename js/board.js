@@ -93,15 +93,6 @@ class Board {
     let row6;
 
     this.rows.push(
-      (topRow = [
-        this.topCells[0],
-        this.topCells[1],
-        this.topCells[2],
-        this.topCells[3],
-        this.topCells[4],
-        this.topCells[5],
-        this.topCells[6],
-      ]),
       (row0 = [
         this.allCells[0],
         this.allCells[1],
@@ -155,6 +146,15 @@ class Board {
         this.allCells[39],
         this.allCells[40],
         this.allCells[41],
+      ]),
+      (topRow = [
+        this.topCells[0],
+        this.topCells[1],
+        this.topCells[2],
+        this.topCells[3],
+        this.topCells[4],
+        this.topCells[5],
+        this.topCells[6],
       ])
     );
   }

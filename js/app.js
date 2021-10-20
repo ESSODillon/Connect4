@@ -1,45 +1,66 @@
+let contentWrapper = document.getElementById("wrapper");
+let menu = document.getElementById("menu");
 let BoardGame = new Board();
 BoardGame.fillColumns();
 BoardGame.fillRows();
-let GameSettings = new Settings(true, true);
-let WinningStatus = new Winning();
+let WinningStatus = new Winning(true, true);
+
+function startGame() {
+  TweenMax.to(menu, {
+    duration: 0.5,
+    x: window.innerWidth,
+    alpha: 0,
+    display: "none",
+  });
+
+  TweenMax.from(contentWrapper, {
+    duration: 1.5,
+    x: window.innerWidth,
+    alpha: 0,
+  });
+
+  TweenMax.to(contentWrapper, {
+    display: "block",
+    alpha: 1,
+  });
+}
 
 // Event Handlers
 function handleCellMouseOver(e) {
-  if (!GameSettings.gameIsLive) return;
+  if (!WinningStatus.gameIsLive) return;
   const cell = e.target;
-  const [rowIndex, colIndex] = GameSettings.getCellLocation(cell);
+  const [rowIndex, colIndex] = WinningStatus.getCellLocation(cell);
 
   const topCell = BoardGame.topCells[colIndex];
-  topCell.classList.add(GameSettings.yellowIsNext ? "yellow" : "red");
+  topCell.classList.add(WinningStatus.yellowIsNext ? "yellow" : "red");
 }
 
 function handleCellMouseOut(e) {
   const cell = e.target;
-  const [rowIndex, colIndex] = GameSettings.getCellLocation(cell);
-  GameSettings.clearColorFromTop(BoardGame.topCells, colIndex);
+  const [rowIndex, colIndex] = WinningStatus.getCellLocation(cell);
+  WinningStatus.clearColorFromTop(BoardGame.topCells, colIndex);
 }
 
 function handleCellClick(e) {
-  if (!GameSettings.gameIsLive) return;
+  if (!WinningStatus.gameIsLive) return;
   const cell = e.target;
-  const [rowIndex, colIndex] = GameSettings.getCellLocation(cell);
+  const [rowIndex, colIndex] = WinningStatus.getCellLocation(cell);
 
-  const openCell = GameSettings.getFirstOpenCellForColumn(
+  const openCell = WinningStatus.getFirstOpenCellForColumn(
     BoardGame.columns,
     colIndex
   );
 
   if (!openCell) return;
 
-  openCell.classList.add(GameSettings.yellowIsNext ? "yellow" : "red");
+  openCell.classList.add(WinningStatus.yellowIsNext ? "yellow" : "red");
   WinningStatus.checkStatusOfGame(BoardGame.rows, openCell);
 
-  GameSettings.yellowIsNext = !GameSettings.yellowIsNext;
-  GameSettings.clearColorFromTop(colIndex);
-  if (GameSettings.gameIsLive) {
-    const topCell = topCells[colIndex];
-    topCell.classList.add(GameSettings.yellowIsNext ? "yellow" : "red");
+  WinningStatus.yellowIsNext = !WinningStatus.yellowIsNext;
+  WinningStatus.clearColorFromTop(BoardGame.topCells, colIndex);
+  if (WinningStatus.gameIsLive) {
+    const topCell = BoardGame.topCells[colIndex];
+    topCell.classList.add(WinningStatus.yellowIsNext ? "yellow" : "red");
   }
 }
 
@@ -52,7 +73,7 @@ for (const row of BoardGame.rows) {
   }
 }
 
-GameSettings.resetButton.addEventListener("click", () => {
+WinningStatus.resetButton.addEventListener("click", () => {
   for (const row of BoardGame.rows) {
     for (const cell of row) {
       cell.classList.remove("red");
@@ -60,7 +81,8 @@ GameSettings.resetButton.addEventListener("click", () => {
       cell.classList.remove("win");
     }
   }
-  GameSettings.gameIsLive = true;
-  GameSettings.yellowIsNext = true;
-  GameSettings.statusSpan.textContent = "";
+
+  WinningStatus.gameIsLive = true;
+  WinningStatus.yellowIsNext = true;
+  WinningStatus.statusSpan.textContent = "";
 });

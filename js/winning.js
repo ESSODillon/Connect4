@@ -1,6 +1,6 @@
 class Winning extends Settings {
-  constructor() {
-    super();
+  constructor(gameIsLive, yellowIsNext) {
+    super(gameIsLive, yellowIsNext);
   }
 
   checkWinningCells(cells) {

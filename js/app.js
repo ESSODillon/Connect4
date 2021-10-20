@@ -1,3 +1,4 @@
+// Variables, methods, and elements
 let contentWrapper = document.getElementById("wrapper");
 let menu = document.getElementById("menu");
 let BoardGame = new Board();
@@ -5,6 +6,7 @@ BoardGame.fillColumns();
 BoardGame.fillRows();
 let WinningStatus = new Winning(true, true);
 
+// CSS animations that use Green Sock to transition between menu and board
 function startGame() {
   TweenMax.to(menu, {
     duration: 0.5,
@@ -25,7 +27,7 @@ function startGame() {
   });
 }
 
-// Event Handlers
+// Event Handlers for hovering the mouse over a cell, out of a cell, and clicking a cell. All essential for detecting where you're at, and where to place a game piece on the board.
 function handleCellMouseOver(e) {
   if (!WinningStatus.gameIsLive) return;
   const cell = e.target;
@@ -64,7 +66,7 @@ function handleCellClick(e) {
   }
 }
 
-// Adding Event Listeners
+// Adding the Event Listeners to each of the cells on the board
 for (const row of BoardGame.rows) {
   for (const cell of row) {
     cell.addEventListener("mouseover", handleCellMouseOver);
@@ -73,6 +75,7 @@ for (const row of BoardGame.rows) {
   }
 }
 
+// Adding Event Listener for the reset button, clears the board, makes yellow go next, erases the text span and sets the game status to true.
 WinningStatus.resetButton.addEventListener("click", () => {
   for (const row of BoardGame.rows) {
     for (const cell of row) {

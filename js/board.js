@@ -1,4 +1,5 @@
 class Board {
+  // Constructor for all cells that aren't the top cells, the top cells, columns and rows
   constructor() {
     this.allCells = document.querySelectorAll(".cell:not(.row-top)");
     this.topCells = document.querySelectorAll(".cell.row-top");
@@ -6,6 +7,7 @@ class Board {
     this.rows = [];
   }
 
+  // Cycles through every column and pushes them into an array
   fillColumns() {
     let column0;
     let column1;
@@ -82,6 +84,7 @@ class Board {
     );
   }
 
+  // Cycles through every row and pushes them into an array. Top row HAS to go last in order for the program to work.
   fillRows() {
     let topRow;
     let row0;

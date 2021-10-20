@@ -1,8 +1,10 @@
 class Winning extends Settings {
+  // Constructor for the inherited classes properties
   constructor(gameIsLive, yellowIsNext) {
     super(gameIsLive, yellowIsNext);
   }
 
+  // Check cells to see if there's a winning 4 in a row combo
   checkWinningCells(cells) {
     if (cells.length < 4) return false;
     this.gameIsLive = false;
@@ -15,6 +17,7 @@ class Winning extends Settings {
     return true;
   }
 
+  // Checks horizontally, vertically, and diagnoally as well as tied games to determine the current status of the game. When the game ends, gameIsLive turns to false.
   checkStatusOfGame(rows, cell) {
     const color = this.getColorOfCell(cell);
     if (!color) return;

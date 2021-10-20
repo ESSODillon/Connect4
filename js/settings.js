@@ -1,4 +1,5 @@
 class Settings {
+  // Constructor for the properties of gameIsLive, in other words "is the game currently active, or finished." Reset button from index.html, and status span for displaying who won after the game concludes.
   constructor(gameIsLive, yellowIsNext) {
     this.gameIsLive = gameIsLive;
     this.yellowIsNext = yellowIsNext;
@@ -6,11 +7,13 @@ class Settings {
     this.statusSpan = document.querySelector(".status");
   }
 
+  // Returns a spread operator for the cells class list
   getClassListArray(cell) {
     const classList = cell.classList;
     return [...classList];
   }
 
+  // Returns the row number AND the column number for a cell
   getCellLocation(cell) {
     let classList = this.getClassListArray(cell);
 
@@ -24,6 +27,7 @@ class Settings {
     return [rowNumber, colNumber];
   }
 
+  // Finds the first open cell to color the game piece with, depending on which column you clicked
   getFirstOpenCellForColumn(columns, colIndex) {
     const column = columns[colIndex];
     const columnWithoutTop = column.slice(0, 6);
@@ -38,12 +42,14 @@ class Settings {
     return null;
   }
 
+  // Clears the color from the topRow after you've clicked it
   clearColorFromTop(topCells, colIndex) {
     const topCell = topCells[colIndex];
     topCell.classList.remove("yellow");
     topCell.classList.remove("red");
   }
 
+  // Gets color of the current cell, super useful for win conditions later on
   getColorOfCell(cell) {
     const classList = this.getClassListArray(cell);
     if (classList.includes("yellow")) {
